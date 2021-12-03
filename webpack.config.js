@@ -30,7 +30,11 @@ module.exports=function(env,args)
         },
         externals:{
             "react":"react",
-            "react-dom":"react-dom"
+            "react-dom":"react-dom",
+            "intoy-utils":"intoy-utils",
+            "intoy-modal":"intoy-modal",
+            "intoy-xhr":"intoy-xhr",
+            "intoy-chosen":"intoy-chosen",
         },
         plugins:[
             new CleanWebpackPlugin(),                     

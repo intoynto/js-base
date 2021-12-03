@@ -1,6 +1,6 @@
 {
   "name": "intoy-base",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "js base",
   "main": "dist/base.js",
   "typings": "dist/base.d.ts",
@@ -10,6 +10,13 @@
     "dts": "node wp.dts.js",
     "g": "webpack --mode development",
     "b": "webpack --mode production"
+  },
+  "dependencies": {
+    "intoy-chosen": "^0.0.4",
+    "intoy-modal": "^0.0.9",
+    "intoy-utils": "^0.0.3",
+    "intoy-xhr": "^0.0.0",
+    "preact": "^10.6.2"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
@@ -32,12 +39,5 @@
     "type": "git",
     "url": "git+https://github.com/intoynto/js-base"
   },
-  "homepage": "https://github.com/intoynto/js-base",
-  "dependencies": {
-    "intoy-chosen": "^0.0.3",
-    "intoy-modal": "^0.0.9",
-    "intoy-utils": "^0.0.3",
-    "intoy-xhr": "^0.0.0",
-    "preact": "^10.6.2"
-  }
+  "homepage": "https://github.com/intoynto/js-base"
 }

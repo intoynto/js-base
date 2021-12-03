@@ -15,7 +15,10 @@ module.exports=function(env,args)
         output:{
             path:path.resolve(__dirname,"dist"),
             chunkFilename: '[name].js',
-            filename: '[name].js'
+            filename: '[name].js',
+            libraryTarget: 'umd',
+            library: `${dev.MODUL_NAME}`,
+            umdNamedDefine: true
         },
         devtool:'source-map',
         resolve: { 
@@ -23,7 +26,7 @@ module.exports=function(env,args)
             alias:{
                 "react": "preact/compat",
                 "react-dom": "preact/compat"
-            } 
+            }
         },
         externals:{
             "react":"react",

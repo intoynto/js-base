@@ -197,18 +197,41 @@ class BaseModal<P extends IBaseModalProps, S extends IBaseModalState> extends Re
                         }                        
                     }>
                         {progress && 
-                            <div className="relative w-2/3 grid gap-1" style={{marginBottom:"12.5%"}}>
-                                <div className="flex justify-between text-xs">
+                            <div className='relative w-2/3 gap-1'
+                                style={{
+                                    position:'relative',
+                                    marginBottom:"12.5%",
+                                    width:'75%',
+                                    display:'grid',
+                                    gap:'0.5rem',
+                                }}
+                                >
+                                <div className="flex justify-between text-xs"
+                                    style={{
+                                        display:'flex',
+                                        justifyContent:'space-between',
+                                        fontSize:'0.75rem',
+                                    }}
+                                    >
                                     <div>{progress.percentage.toFixed(2)}%</div>
                                     <div>100%</div>
                                 </div>
-                                <div className="relative h-2 border rounded overflow-hidden bg-white border-blue-500">
+                                <div className="relative h-2 border rounded overflow-hidden bg-white border-blue-500"
+                                    style={{
+                                        position:'relative',
+                                        border:'solid 1px #3B82F6',
+                                        backgroundColor:'white',
+                                        overflow:'hidden',
+                                        borderRadius:'0.25rem'
+                                    }}
+                                    >
                                     <div className="bg-blue-500" style={{
                                         position:"absolute",
                                         left:0,
                                         top:0,
                                         height:"100%",
                                         transition:"all 274ms ease-in-out",
+                                        backgroundColor:'#3B82F6',
                                         width:`${progress.percentage}%`,
                                     }}/>
                                 </div>

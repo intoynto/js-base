@@ -123,7 +123,7 @@ export declare class ChosenList<P extends IChosenListProps, S extends IChosenLis
     constructor(props: P);
     getInitialState(): S;
     applyAftRes: () => void;
-    doLoad(): false | undefined;
+    doLoad(): void;
     onReload(): void;
     componentDidMount(): void;
     componentDidUpdate(prev: P): void;

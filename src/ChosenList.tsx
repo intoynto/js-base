@@ -80,7 +80,8 @@ export class ChosenList<P extends IChosenListProps, S extends IChosenListState> 
     doLoad(){
         let url=toStr(this.props.url).toString().trim();        
 
-        if(url.length<1) return false;
+        if(url.length<1) return;
+
         const se:Iajax={
             url:url,
             method:this.props.method?this.props.method:"GET",

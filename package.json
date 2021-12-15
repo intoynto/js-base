@@ -1,6 +1,6 @@
 {
   "name": "intoy-base",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "js base",
   "main": "dist/base.js",
   "typings": "dist/base.d.ts",

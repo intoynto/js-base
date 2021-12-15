@@ -33,7 +33,7 @@ const Info=({page,limit,rowcount,totalrow}:IInfo)=>{
 
     //pageInfo=Math.min(rowcount,pageInfo);
     return (
-        <div className="info"><b>{start}</b>-<b>{stop}</b>/<b>{totalrow}</b>{rowcount>0 && <span> <b>{toDashVal(rowcount)}</b></span>}</div>
+        <div className="info"><b>{start}</b>-<b>{stop}</b>{totalrow>0 && <span> / <b>{toDashVal(totalrow)}</b></span>}</div>
     );
 }
 

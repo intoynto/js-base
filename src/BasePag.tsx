@@ -1,5 +1,5 @@
 import React from "react";
-import {toInt} from "intoy-utils";
+import {toInt,toDashVal} from "intoy-utils";
 import {IBasePagProps,IBasePageInfoParams,IBasePageInfo} from "./types";
 
 const step=(page:number,className:string,cb?:Function)=>{
@@ -33,7 +33,7 @@ const Info=({page,limit,rowcount,totalrow}:IInfo)=>{
 
     //pageInfo=Math.min(rowcount,pageInfo);
     return (
-        <div className="info"><b>{start}</b>-<b>{stop}</b>/<b>{totalrow}</b></div>
+        <div className="info"><b>{start}</b>-<b>{stop}</b>/<b>{totalrow}</b>{rowcount>0 && <span> <b>{toDashVal(rowcount)}</b></span>}</div>
     );
 }
 

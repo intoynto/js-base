@@ -214,7 +214,7 @@ export class Base<P extends IBaseProps, S extends IBaseState> extends React.Comp
             this.res.page=1;
             this.res.pagecount=1;
             this.res.totalrow=this.records.length;
-            this.res.rowcount=this.res.totalrow;
+            this.res.rowcount=this.res.rowcount;
         }
         else {
             //reset data

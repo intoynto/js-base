@@ -1,6 +1,6 @@
 {
   "name": "intoy-base",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "js base",
   "main": "dist/base.js",
   "typings": "dist/base.d.ts",
@@ -14,8 +14,8 @@
   "dependencies": {
     "intoy-chosen": "^0.0.5",
     "intoy-modal": "^0.0.9",
-    "intoy-utils": "^0.0.7",
-    "intoy-xhr": "^0.0.5",
+    "intoy-utils": "^0.0.8",
+    "intoy-xhr": "^0.0.6",
     "preact": "^10.6.2"
   },
   "devDependencies": {

@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import { LoadingOverlay, AlertExclam } from "intoy-modal"
 import { isEqual, rTrim, toInt, toStr, toUcWords} from "intoy-utils";
 import { ajax, Iajax } from "intoy-xhr";
-import { getConfigHeader, getDefaultDeleteRequestType, handleAlertErrorBase } from "./baseConfig";
+import { baseResAttrGet, getConfigHeader, getDefaultDeleteRequestType, handleAlertErrorBase } from "./baseConfig";
 import {    
     IBaseProps,    
     IBaseSearch,
@@ -186,17 +186,18 @@ export class Base<P extends IBaseProps, S extends IBaseState> extends React.Comp
 
     protected handResp(res:any)
     {   
-        if(res && res.records && Array.isArray(res.records))
+        const attr=baseResAttrGet();
+        if(res && ((res as any)[attr.records] && Array.isArray((res as any)[attr.records])) )
         {
             //copy response
             this.res={...res};
-            this.res.records=res.records.slice(0);
-            this.res.page=this.res.page!==undefined && this.res.page!==null?this.res.page:1;
-            this.res.pagecount=this.res.pagecount!==undefined && this.res.pagecount!==null?this.res.pagecount:1;
-            this.res.totalrow=this.res.totalrow===undefined || this.res.totalrow===null?this.res.totalrow:this.res.records.length;
-            this.res.rowcount=this.res.rowcount===undefined || this.res.rowcount===null?this.res.rowcount:this.res.records.length;
+            this.res.records=(res as any)[attr.records].slice(0);
+            this.res.page=(res as any)[attr.page]!==undefined && (res as any)[attr.page]!==null?(res as any)[attr.page]:1;
+            this.res.pagecount=(res as any)[attr.pagecount]!==undefined && (res as any)[attr.pagecount]!==null?(res as any)[attr.pagecount]:1;
+            this.res.totalrow=(res as any)[attr.totalrow]!==undefined && (res as any)[attr.totalrow]!==null?(res as any)[attr.totalrow]:this.res.records.length;
+            this.res.rowcount=(res as any)[attr.rowcount]!==undefined && (res as any)[attr.rowcount]!==null?(res as any)[attr.rowcount]:this.res.records.length;
+            this.res.limit=(res as any)[attr.limit]!==undefined && (res as any)[attr.limit]!==null?(res as any)[attr.limit]:this.req.limit;
             //normalize response
-            this.res.limit=res.limit!==undefined && res.limit!==null?res.limit:this.req.limit;
             this.res.page=this.res.page<1?1:this.res.page;
             this.res.pagecount=this.res.pagecount<1?1:this.res.pagecount;
             this.res.totalrow=this.res.totalrow<0?0:this.res.totalrow;

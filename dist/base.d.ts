@@ -173,6 +173,16 @@ export declare class BaseLoader<P extends IBaseLoaderProps, S extends IBaseLoade
 }
 export { BaseLoader };
 
+export declare type IbaseResAttr = {
+    records: string;
+    page: string;
+    pagecount: string;
+    limit: string;
+    rowcount: string;
+    totalrow: string;
+};
+export declare function baseResAttrGet(): IbaseResAttr;
+export declare function baseResAttrSet(props: IbaseResAttr): void;
 export declare function getDefaultDeleteRequestType(): IBaseDeleteRequestType;
 export declare function setDefaultDeleteRequestType(value: IBaseDeleteRequestType): void;
 export declare function getDefaultBaseModalTitleInsert(): string;

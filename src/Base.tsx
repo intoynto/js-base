@@ -193,8 +193,8 @@ export class Base<P extends IBaseProps, S extends IBaseState> extends React.Comp
             this.res.records=res.records.slice(0);
             this.res.page=this.res.page!==undefined && this.res.page!==null?this.res.page:1;
             this.res.pagecount=this.res.pagecount!==undefined && this.res.pagecount!==null?this.res.pagecount:1;
-            this.res.totalrow=this.res.totalrow===undefined || this.res.totalrow===null?this.res.records.length:this.res.totalrow;
-            this.res.rowcount=this.res.rowcount===undefined || this.res.rowcount===null?this.res.records.length:this.res.rowcount;
+            this.res.totalrow=this.res.totalrow===undefined || this.res.totalrow===null?this.res.totalrow:this.res.records.length;
+            this.res.rowcount=this.res.rowcount===undefined || this.res.rowcount===null?this.res.rowcount:this.res.records.length;
             //normalize response
             this.res.limit=res.limit!==undefined && res.limit!==null?res.limit:this.req.limit;
             this.res.page=this.res.page<1?1:this.res.page;

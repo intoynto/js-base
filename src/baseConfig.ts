@@ -7,6 +7,41 @@ let defaultDeleteRequestType:IBaseDeleteRequestType="qparams";
 let defaultBaseModalTitleInsert:string="New";
 let defaultBaseModalTitleUpdate:string="Edit";
 
+type IbaseResAttr = {
+    records:string // data array b:response
+    page:string // halaman b:response
+    pagecount:string // jumlah halaman b:response
+    limit:string // limit request
+    rowcount:string // jumlah record saat ini
+    totalrow:string // jumlah record keseluruhan
+}
+
+let baseResAttr:IbaseResAttr = {
+    records:"records",
+    page:"page",
+    pagecount:"pagecount",
+    limit:"limit",
+    rowcount:"rowcount",
+    totalrow:"totalrow"
+}
+
+export function baseResAttrGet():IbaseResAttr
+{
+    return baseResAttr;
+}
+
+export function baseResAttrSet(props:IbaseResAttr)
+{
+    let fields:string[]=["records","page","pagecount","limit","rowcount","totalrow"];
+    for(let i=0; i<fields.length; i++)
+    {
+        if(fields[i] in props)
+        {
+            (baseResAttr as any)[fields[i]]=(props as any)[fields[i]];
+        }
+    }
+}
+
 export function getDefaultDeleteRequestType():IBaseDeleteRequestType
 {
     return defaultDeleteRequestType;

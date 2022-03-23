@@ -168,7 +168,6 @@ export class SelectList<P extends ISelectListProps, S extends ISelectListState> 
             harus=value_a!==value_b;            
             if(harus)
             {
-                console.log("========force");
                 this.forceUpdate();
             }
         }

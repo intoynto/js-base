@@ -179,10 +179,6 @@ export class SelectList<P extends ISelectListProps, S extends ISelectListState> 
             forward.multiple=true; 
         }
         
-        console.log("passProps to chosen");
-        console.log(forward);
-        console.log(this.chosenOptions);
-        console.log("chosen is ",Select);
         return (
             <Select {...forward as any} options={this.chosenOptions} />
         )

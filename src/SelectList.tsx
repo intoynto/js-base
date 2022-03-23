@@ -97,7 +97,8 @@ export class SelectList<P extends ISelectListProps, S extends ISelectListState> 
         }
     }
     
-    doLoad(){
+    doLoad()
+    {
         let url=toStr(this.props.url).toString().trim();        
 
         if(url.length<1) return;
@@ -164,9 +165,9 @@ export class SelectList<P extends ISelectListProps, S extends ISelectListState> 
             const value_a=toStr(props.value).toString().trim();
             const value_b=toStr(this.props.value).toString().trim();
             harus=value_a!==value_b;
+            console.log("force ",{value_a,value_b},{harus});
             if(harus)
             {
-                console.log("force ",{value_a,value_b});
             }
         }
     }

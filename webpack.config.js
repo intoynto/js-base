@@ -35,12 +35,11 @@ module.exports=function(env,args)
             "intoy-modal":"intoy-modal",
             "intoy-xhr":"intoy-xhr",
             "intoy-chosen":"intoy-chosen",
+            "intoy-select":"intoy-select",
         },
         plugins:[
             new CleanWebpackPlugin(),                     
-            new TypescriptDeclarationPlugin({
-                out:`${dev.MODUL_NAME}.d.ts`,
-            })
+            //new TypescriptDeclarationPlugin({out:`${dev.MODUL_NAME}.d.ts`,})
         ],
         //stats:"detailed",
         module:{

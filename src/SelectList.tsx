@@ -1,14 +1,31 @@
 import React from "react";
-import {Chosen} from "intoy-chosen";
 import {isEqual, toStr} from "intoy-utils";
 import {ajax, Iajax, ajaxCache } from "intoy-xhr";
 import { getConfigHeader } from "./baseConfig";
-import {IChosenListProps,IChosenListState} from "./types";
+import { Select } from "intoy-select";
 
-/**
- * @deprecated Sebagai pengganti gunakan component <SelectList {...props} />
- */
-export class ChosenList<P extends IChosenListProps, S extends IChosenListState> extends React.Component<P,S>
+export type ISelectListProps = {
+    url:string
+    params?:any
+    method?:string
+    name:string
+    value:string | number | null | undefined
+    fieldid:string
+    fieldname:string
+    placeholder?:string
+    multiple?:boolean
+    sortField?:string
+    useCache?:boolean
+    cacheExpire?:number
+    onFieldName?:(data:any)=>void    
+    onChange:(e:any)=>void
+}
+
+export type ISelectListState = {
+    loading:boolean
+}
+
+export class SelectList<P extends ISelectListProps, S extends ISelectListState> extends React.Component<P,S>
 {
     protected options:Array<any>;
     protected chosenOptions:Array<any> | any;
@@ -143,7 +160,8 @@ export class ChosenList<P extends IChosenListProps, S extends IChosenListState> 
         }
     }
 
-    render(){
+    render()
+    {
         const props=this.props;
         const forward:any={            
             name:props.name,    
@@ -159,10 +177,14 @@ export class ChosenList<P extends IChosenListProps, S extends IChosenListState> 
         
         if(p.multiple===true){
             forward.multiple=true; 
-        }        
+        }
         
+        console.log("passProps to chosen");
+        console.log(forward);
+        console.log(this.chosenOptions);
+        console.log("chosen is ",Select);
         return (
-            <Chosen {...forward as any} options={this.chosenOptions} />
+            <Select {...forward as any} options={this.chosenOptions} />
         )
     }
 }

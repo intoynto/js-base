@@ -5,7 +5,6 @@
         "lib": ["ES2015","DOM"],
         "moduleResolution": "node",
         "noImplicitAny": true,
-        "removeComments": true,
         "preserveConstEnums": true,
         "sourceMap": true,
         "declaration": true,
@@ -17,5 +16,6 @@
         "outDir": "./dist",
         "rootDir": ".",
         "jsx": "react",
+        "removeComments": false,
     }
 }

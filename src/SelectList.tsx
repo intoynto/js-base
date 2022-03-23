@@ -165,11 +165,11 @@ export class SelectList<P extends ISelectListProps, S extends ISelectListState> 
         {
             const value_a=toStr(props.value).toString().trim();
             const value_b=toStr(this.props.value).toString().trim();
-            harus=value_a!==value_b;
-            console.log("force ",{value_a,value_b},{harus});
-            console.log("force from ",this.props);
+            harus=value_a!==value_b;            
             if(harus)
             {
+                console.log("========force");
+                this.forceUpdate();
             }
         }
     }

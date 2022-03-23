@@ -158,6 +158,7 @@ export class SelectList<P extends ISelectListProps, S extends ISelectListState> 
         if(harus)
         {           
             this.onReload();
+            return;
         }
 
         if(!Array.isArray(props.value) && !Array.isArray(this.props.value))

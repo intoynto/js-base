@@ -151,12 +151,23 @@ export class SelectList<P extends ISelectListProps, S extends ISelectListState> 
         this.onReload();
     }
 
-    componentDidUpdate(prev:P){
-        const satu=!isEqual(this.props.params,prev.params);
-        const harus=satu;        
+    componentDidUpdate(props:P){
+        const satu=!isEqual(this.props.params,props.params);
+        let harus=satu;        
         if(harus)
         {           
             this.onReload();
+        }
+
+        if(!Array.isArray(props.value) && !Array.isArray(this.props.value))
+        {
+            const value_a=toStr(props.value).toString().trim();
+            const value_b=toStr(this.props.value).toString().trim();
+            harus=value_a!==value_b;
+            if(harus)
+            {
+                console.log("force ",{value_a,value_b});
+            }
         }
     }
 

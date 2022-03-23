@@ -27,6 +27,6 @@ export declare class SelectList<P extends ISelectListProps, S extends ISelectLis
     doLoad(): void;
     onReload(): void;
     componentDidMount(): void;
-    componentDidUpdate(prev: P): void;
+    componentDidUpdate(props: P): void;
     render(): JSX.Element;
 }

@@ -256,7 +256,7 @@ export class Base<P extends IBaseProps, S extends IBaseState> extends React.Comp
 
     }
 
-    protected handRespAft()
+    protected handRespAft(success?:boolean)
     {
         this.setState({loadedCount:this.state.loadedCount+1,loading:false,error:null});
     }
@@ -308,10 +308,11 @@ export class Base<P extends IBaseProps, S extends IBaseState> extends React.Comp
         .catch(e=>{
             if(this.clrDataOnFailed)
             {
-                this.records=[];
+                this.handResp(null);
+                this.handRespAft(false);
+                return;
             }
-            
-            this.setState({loadedCount:this.state.loadedCount+1,loading:false});
+            this.handRespAft(false);
         });
     }
 

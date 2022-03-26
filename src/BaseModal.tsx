@@ -1,6 +1,6 @@
 import React,{CSSProperties, RefObject,ChangeEvent} from "react";
 import {modal} from "intoy-modal";
-import { isObjectEmpty } from "intoy-utils";
+import { isObjectEmpty, toStr } from "intoy-utils";
 import { ajax, Iajax, IUploadProgress } from "intoy-xhr";
 import { getConfigHeader, getDefaultBaseModalTitleInsert, getDefaultBaseModalTitleUpdate, handleAlertErrorBase } from "./baseConfig";
 import {IBaseModalState, IBaseModalProps, IModalPromiseParameters} from "./types";
@@ -27,6 +27,7 @@ class BaseModal<P extends IBaseModalProps, S extends IBaseModalState> extends Re
         this.onCh=this.onCh.bind(this);
         this.onClSubmit=this.onClSubmit.bind(this);
         this.onSuccess=this.onSuccess.bind(this);
+        this.getCkBoxVal=this.getCkBoxVal.bind(this);
         this.prevData={...props.data};
         this.data={...props.data};   
         this.nodeForm=null;    
@@ -43,6 +44,12 @@ class BaseModal<P extends IBaseModalProps, S extends IBaseModalState> extends Re
     protected getIncludeFields():string[]
     {
         return [];
+    }
+
+    protected getCkBoxVal(value:any,checked:boolean)
+    {
+        return checked && (Array.isArray(value) && value.length>0 || toStr(value).toString().trim().length)>0?value:null;
+        
     }
 
     getEditing(){
@@ -88,6 +95,46 @@ class BaseModal<P extends IBaseModalProps, S extends IBaseModalState> extends Re
                 }
             }
         }
+
+        // init query selector bind checkbox inputs into param data        
+        // karen type checkbox tidak diinclude value oleh formElement
+        if(this.nodeForm)
+        {
+            const ndForm=this.nodeForm as HTMLElement;
+            const selectors=['input[type=checkbox]'];
+            selectors.forEach((selector:string)=>{
+                const elsa=ndForm.querySelectorAll(selector);
+                const getValSelParam=(name:string)=>{
+                    return setup.params?setup.params[name]:null;
+                }
+                const getValData=(name:string)=>{
+                    return this.data[name];
+                }
+                const compareSeParam=(name:string,value:any,el:HTMLInputElement)=>{
+                    let valData=getValSelParam(name);
+                    valData=valData===null || valData===undefined?getValData(name):valData;
+                    if(valData!==null && valData!==undefined)
+                    {
+                        if(!setup.params) setup.params={};
+                        setup.params[name]=valData;
+                    }
+                };
+
+                elsa.forEach((element:Element)=>{
+                    const el:HTMLInputElement=element as HTMLInputElement;
+                    if(!el.name) 
+                    {
+                        return;
+                    }
+
+                    if(el.type==="checkbox")
+                    {
+                        compareSeParam(el.name,el.value,el);
+                    }
+                })
+            });
+        }
+
         const headers=getConfigHeader();
         if (headers){
             setup.headers={...headers};
@@ -123,8 +170,24 @@ class BaseModal<P extends IBaseModalProps, S extends IBaseModalState> extends Re
         });
     }
 
-    onCh(e:IAnyEvent){
+    onCh(e:IAnyEvent)
+    {
+        const {type}:{type:any}=e.target;
         this.data[e.target.name]=e.target.value;
+        
+        if(type==="checkbox")
+        {
+            let checked=(e.target as any).checked;
+
+            let value:any=e.target.value;
+            value=this.getCkBoxVal(value,checked);
+            this.data[e.target.name]=value;
+            if(value===null || value===undefined)
+            {
+                delete this.data[e.target.name];
+            }                    
+        }
+        
         this.forceUpdate();
     }
 

@@ -16,6 +16,7 @@ declare class BaseModal<P extends IBaseModalProps, S extends IBaseModalState> ex
     protected gInitState(): S;
     protected nodeForm: RefObject<HTMLFormElement> | any;
     protected getIncludeFields(): string[];
+    protected getCkBoxVal(value: any, checked: boolean): any;
     getEditing(): boolean;
     getSetup(): Iajax;
     protected hUploadProgress(prog: IUploadProgress): void;

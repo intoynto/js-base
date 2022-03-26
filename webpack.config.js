@@ -25,7 +25,9 @@ module.exports=function(env,args)
             extensions: [".ts",".tsx",".js",".jsx"],
             alias:{
                 "react": "preact/compat",
-                "react-dom": "preact/compat"
+                "react-dom": "preact/compat",
+                "react-dom/test-utils": "preact/test-utils",
+                "react/jsx-runtime": "preact/jsx-runtime",
             }
         },
         externals:{
@@ -46,7 +48,7 @@ module.exports=function(env,args)
             rules: [
                 {
                     test: /\.(ts|tsx|js)$/,
-                    exclude: /(node_module|dist)/,
+                    exclude: /(node_modules|dist)/,
                     use:[
                         {
                             loader: 'babel-loader',
@@ -54,8 +56,9 @@ module.exports=function(env,args)
                                 presets:[
                                     "@babel/preset-env",
                                     "@babel/preset-react",
-                                ],
-                                cacheDirectory: true,
+                                    "@babel/preset-typescript",
+                                ],                                
+                                //cacheDirectory: true,
                             },
                         },
                         {
@@ -66,11 +69,16 @@ module.exports=function(env,args)
             ]
         },
         optimization:{
-            minimizer:[
-                new TerserWebpackPlugin()
-            ],
+            minimize:false,
+            minimizer:[],
         }
     };
+
+    if(isProd)
+    {
+        conf.optimization.minimize=true;
+        conf.optimization.minimizer.push(new TerserWebpackPlugin());
+    }
 
     conf.entry={};
     conf.entry[`${dev.MODUL_NAME}`]=path.resolve(__dirname,"src/index.tsx");

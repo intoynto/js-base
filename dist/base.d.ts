@@ -24,7 +24,7 @@ export declare class Base<P extends IBaseProps, S extends IBaseState> extends Re
     protected handResp(res: any): void;
     protected handSort(): void;
     protected handFilter(): void;
-    protected handRespAft(): void;
+    protected handRespAft(success?: boolean): void;
     protected getSetup(params?: any): Iajax;
     doReload(): void;
     onReload(): void;

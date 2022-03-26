@@ -1,4 +1,4 @@
-const MODUL_NAME='base';
+const MODUL_NAME='index';
 const DECLARE_MODUL_NAME="intoy-base";
 
 module.exports = {

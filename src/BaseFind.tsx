@@ -51,7 +51,8 @@ export class BaseFind<P extends IBaseFindProps, S extends IBaseFindState> extend
     protected onCh(e:IAnyEvent){
         if(!e || !e.target || !e.target.name) return;                        
         const search:any=this.state.search || {} as any; 
-        search[e.currentTarget.name]=e.currentTarget.value;                        
+        const value=e.currentTarget.value;
+        search[e.currentTarget.name]=Array.isArray(value)?value.slice(0):value;                        
         this.setState({search:{...search}});
     }
 
@@ -59,7 +60,8 @@ export class BaseFind<P extends IBaseFindProps, S extends IBaseFindState> extend
         if(!e || !e.target || !e.currentTarget.name) return;        
         //const {search}=this.state;
         const search:any=this.state.search || {} as any;
-        search[e.currentTarget.name]=e.currentTarget.value;             
+        const value=e.currentTarget.value;
+        search[e.currentTarget.name]=Array.isArray(value)?value.slice(0):value;  ;             
         this.setState({search:{...search}},this.callPropsSearch);
     }
 

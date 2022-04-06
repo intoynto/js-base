@@ -35,6 +35,7 @@ export class SelectList<P extends ISelectListProps, S extends ISelectListState> 
 
         this.options=[];
         this.chosenOptions=[];
+        this.handRes=this.handRes.bind(this);
         this.onReload=this.onReload.bind(this); 
         this.doLoad=this.doLoad.bind(this);
         this.state=this.getInitialState();
@@ -43,6 +44,11 @@ export class SelectList<P extends ISelectListProps, S extends ISelectListState> 
     getInitialState():S 
     {
         return {loading:false} as S
+    }
+
+    protected handRes(res:any)
+    {
+
     }
 
     applyAftRes=()=>{
@@ -120,6 +126,7 @@ export class SelectList<P extends ISelectListProps, S extends ISelectListState> 
                 this.options=Array.isArray(n) && n.length>0?n.slice(0)
                             :typeof n==='object' && n.records && Array.isArray(n.records)?n.records.slice(0)
                             :[];
+                this.handRes(n);
                 this.applyAftRes();
                 this.setState({loading:false});
             })
@@ -134,6 +141,7 @@ export class SelectList<P extends ISelectListProps, S extends ISelectListState> 
             this.options=Array.isArray(n) && n.length>0?n.slice(0)
                             :typeof n==='object' && n.records && Array.isArray(n.records)?n.records.slice(0)
                             :[];
+            this.handRes(n);
             this.applyAftRes();
             this.setState({loading:false});
         })

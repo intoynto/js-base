@@ -23,6 +23,7 @@ export declare class SelectList<P extends ISelectListProps, S extends ISelectLis
     protected chosenOptions: Array<any> | any;
     constructor(props: P);
     getInitialState(): S;
+    protected handRes(res: any): void;
     applyAftRes: () => void;
     doLoad(): void;
     onReload(): void;

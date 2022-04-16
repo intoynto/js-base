@@ -1,15 +1,17 @@
 {
   "name": "intoy-base",
-  "version": "0.3.0-beta-0.2.1",
+  "version": "0.3.0-beta-0.2.2",
   "description": "js base",
   "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
+  "typings": "dist/types/index.d.ts",
   "author": "intoy",
   "license": "MIT",
   "scripts": {
     "fix": "node wp.fix.js",
+    "pre": "del dist",
     "g": "webpack --mode development",
-    "b": "webpack --mode production && yarn fix"
+    "bw": "webpack --mode production && yarn fix",
+    "b": "npm run pre && rollup -c"
   },
   "dependencies": {
     "intoy-chosen": "^0.0.5",
@@ -19,12 +21,16 @@
     "intoy-xhr": "^0.0.6",
     "preact": "^10.6.6"
   },
-  "peerDependencies": {},
   "devDependencies": {
     "@babel/core": "^7.16.0",
     "@babel/preset-env": "^7.16.4",
     "@babel/preset-react": "^7.16.0",
     "@babel/preset-typescript": "^7.16.7",
+    "@rollup/plugin-alias": "^3.1.9",
+    "@rollup/plugin-babel": "^5.3.1",
+    "@rollup/plugin-commonjs": "^21.1.0",
+    "@rollup/plugin-node-resolve": "^13.2.1",
+    "@rollup/plugin-typescript": "^8.3.2",
     "@types/node": "^16.11.11",
     "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
@@ -32,9 +38,14 @@
     "babel-loader": "^8.2.3",
     "clean-webpack-plugin": "^4.0.0",
     "fs-extra": "^10.0.1",
+    "rollup": "^2.70.2",
+    "rollup-plugin-dts": "^4.2.1",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-terser": "^7.0.2",
     "terser-webpack-plugin": "^5.2.5",
     "ts-loader": "^9.2.6",
-    "typescript": "^4.5.2",
+    "tslib": "^2.3.1",
+    "typescript": "^4.6.3",
     "typescript-declaration-webpack-plugin": "^0.2.2",
     "webpack": "^5.64.4",
     "webpack-cli": "^4.9.1"

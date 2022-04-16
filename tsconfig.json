@@ -1,8 +1,9 @@
 {
     "compilerOptions": {
         "target": "ES2015",
-        "module": "commonjs",
+        "module": "ESNext",
         "lib": ["ES2015","DOM"],
+        "jsx": "react",
         "moduleResolution": "node",
         "noImplicitAny": true,
         "preserveConstEnums": true,
@@ -13,9 +14,12 @@
         "skipLibCheck": true,
         "strict": true,
         "esModuleInterop": true,
-        "outDir": "./dist",
         "rootDir": ".",
-        "jsx": "react",
+        "outDir": "./dist",
+        "declarationDir": "types",
         "removeComments": false,
-    }
+    },
+    "include": [
+        "./src/**/*"
+    ]
 }

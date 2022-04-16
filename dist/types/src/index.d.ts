@@ -3,7 +3,6 @@ export * from "./BaseFind";
 export * from "./BasePag";
 export * from "./BaseTable";
 export * from "./BaseModal";
-export * from "./ChosenList";
 export * from "./Item";
 export * from "./Loader";
 export * from "./baseConfig";

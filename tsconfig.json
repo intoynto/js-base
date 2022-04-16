@@ -14,12 +14,8 @@
         "skipLibCheck": true,
         "strict": true,
         "esModuleInterop": true,
-        "rootDir": ".",
-        "outDir": "./dist",
+        "outDir": "dist",
         "declarationDir": "types",
         "removeComments": false,
-    },
-    "include": [
-        "./src/**/*"
-    ]
+    }
 }

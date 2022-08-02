@@ -24,6 +24,8 @@ export class BaseFind<P extends IBaseFindProps, S extends IBaseFindState> extend
         this.callPropsSearch=this.callPropsSearch.bind(this);
         this.hKeyPress=this.hKeyPress.bind(this);
         this.rdrApFind=this.rdrApFind.bind(this);
+        this.onClickIns=this.onClickIns.bind(this);
+        this.onClickLoad=this.onClickLoad.bind(this);
 
         this.btnInsertIcon=()=><i className="fa fa-plus-circle" />
         this.btnInsertClass="btn btn-outline-primary";
@@ -83,12 +85,32 @@ export class BaseFind<P extends IBaseFindProps, S extends IBaseFindState> extend
         }
     }
 
+    protected onClickIns(e?:React.MouseEvent)
+    {
+        if(e) e.preventDefault();
+        if(this.props.loading || !this.props.useInsert) return;
+        if(typeof this.props.onInsert==='function')
+        {
+            this.props.onInsert();
+        }
+    }
+
+    protected onClickLoad(e?:React.MouseEvent)
+    {
+        if(e) e.preventDefault();
+        if(this.props.loading) return;
+        if(typeof this.props.onReload==='function')
+        {
+            this.props.onReload();
+        }
+    }
+
     protected rdrApFind():any
     {
         const props=this.props;
         const {loading}=props;
         const childs=[
-            <button type="button" className="btn" onClick={e => { e.preventDefault();  if(this.props.loading) return; typeof this.props.onReload==='function'?this.props.onReload():null; }}><i className={"fa " + (this.props.loading ? "fa-spin fa-spinner" :this.textReloadIcon)} />{this.textReload?" "+this.textReload:""}</button>           
+            <button type="button" className="btn" onClick={this.onClickLoad}><i className={"fa " + (this.props.loading ? "fa-spin fa-spinner" :this.textReloadIcon)} />{this.textReload?" "+this.textReload:""}</button>           
         ];
         if(props.useInsert)
         {
@@ -96,7 +118,7 @@ export class BaseFind<P extends IBaseFindProps, S extends IBaseFindState> extend
                 <button 
                     type="button" 
                     className={loading?'btn-outline-secondary':this.btnInsertClass} 
-                    onClick={loading?undefined:this.props.onInsert}
+                    onClick={this.onClickIns}
                 >
                     {!loading && <span>{this.btnInsertIcon?typeof this.btnInsertIcon==="function"?this.btnInsertIcon():this.btnInsertIcon:null}{this.textInsert?" "+this.textInsert:""}</span>}
                     {loading && <i className='fa fa-spin fa-spinner' />}

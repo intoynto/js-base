@@ -17,6 +17,7 @@ export type ISelectListProps = {
     sortField?:string
     useCache?:boolean
     cacheExpire?:number
+    onRes?:(res:any)=>any[]
     onFieldName?:(data:any)=>void    
     onChange:(e:any)=>void
 }
@@ -30,18 +31,23 @@ export class SelectList<P extends ISelectListProps, S extends ISelectListState> 
     protected options:Array<any>;
     protected chosenOptions:Array<any> | any;
 
-    constructor(props:P){
+    constructor(props:P)
+    {
         super(props);            
-
+        this.gState=this.gState.bind(this);
+        this.applyAftRes=this.applyAftRes.bind(this);        
+        this.handRes=this.handRes.bind(this);
+        this.onLoad=this.onLoad.bind(this); 
+        this.doLoad=this.doLoad.bind(this);
+        this.callOnRes=this.callOnRes.bind(this);
+        
         this.options=[];
         this.chosenOptions=[];
-        this.handRes=this.handRes.bind(this);
-        this.onReload=this.onReload.bind(this); 
-        this.doLoad=this.doLoad.bind(this);
-        this.state=this.getInitialState();
+
+        this.state=this.gState(props);
     }
     
-    getInitialState():S 
+    protected gState(props?:P):S 
     {
         return {loading:false} as S
     }
@@ -51,7 +57,8 @@ export class SelectList<P extends ISelectListProps, S extends ISelectListState> 
 
     }
 
-    applyAftRes=()=>{
+    protected applyAftRes()
+    {
         this.chosenOptions=[];           
         if(this.options.length>0 && this.props.sortField)
         {            
@@ -102,8 +109,27 @@ export class SelectList<P extends ISelectListProps, S extends ISelectListState> 
             this.chosenOptions=this.options;
         }
     }
+
+    protected callOnRes()
+    {
+        let oldOptions:any=null;
+        try
+        {
+            if(typeof this.props.onRes==='function')
+            {
+                oldOptions=this.props.onRes(this.options);
+                if(Array.isArray(oldOptions))
+                {
+                    this.options=oldOptions.slice(0);
+                }
+            }
+        }
+        catch(e:any)
+        {
+        }
+    }
     
-    doLoad()
+    protected doLoad()
     {
         let url=toStr(this.props.url).toString().trim();        
 
@@ -127,12 +153,15 @@ export class SelectList<P extends ISelectListProps, S extends ISelectListState> 
                             :typeof n==='object' && n.records && Array.isArray(n.records)?n.records.slice(0)
                             :[];
                 this.handRes(n);
+                this.callOnRes(); // calling on res
                 this.applyAftRes();
                 this.setState({loading:false});
             })
             .catch(()=>{
                 this.setState({loading:false});
             });
+
+            // exit use cahe
             return;
         }
         
@@ -142,6 +171,9 @@ export class SelectList<P extends ISelectListProps, S extends ISelectListState> 
                             :typeof n==='object' && n.records && Array.isArray(n.records)?n.records.slice(0)
                             :[];
             this.handRes(n);
+
+            this.callOnRes(); // calling on res
+
             this.applyAftRes();
             this.setState({loading:false});
         })
@@ -150,14 +182,21 @@ export class SelectList<P extends ISelectListProps, S extends ISelectListState> 
         });
     }
 
-    onReload(){
+    protected onLoad(){
         let url=toStr(this.props.url).toString().trim(); 
         if(url.length<1) return;
+
+        if(this.state.loading)
+        {
+            this.doLoad();
+            return;
+        }
+
         this.setState({loading:true},this.doLoad);
     }
 
     componentDidMount(){        
-        this.onReload();
+        this.onLoad();
     }
 
     componentDidUpdate(props:P){
@@ -165,7 +204,7 @@ export class SelectList<P extends ISelectListProps, S extends ISelectListState> 
         let harus=satu;        
         if(harus)
         {           
-            this.onReload();
+            this.onLoad();
             return;
         }
 

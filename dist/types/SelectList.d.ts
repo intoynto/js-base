@@ -12,6 +12,7 @@ export declare type ISelectListProps = {
     sortField?: string;
     useCache?: boolean;
     cacheExpire?: number;
+    onRes?: (res: any) => any[];
     onFieldName?: (data: any) => void;
     onChange: (e: any) => void;
 };
@@ -22,11 +23,12 @@ export declare class SelectList<P extends ISelectListProps, S extends ISelectLis
     protected options: Array<any>;
     protected chosenOptions: Array<any> | any;
     constructor(props: P);
-    getInitialState(): S;
+    protected gState(props?: P): S;
     protected handRes(res: any): void;
-    applyAftRes: () => void;
-    doLoad(): void;
-    onReload(): void;
+    protected applyAftRes(): void;
+    protected callOnRes(): void;
+    protected doLoad(): void;
+    protected onLoad(): void;
     componentDidMount(): void;
     componentDidUpdate(props: P): void;
     render(): JSX.Element;

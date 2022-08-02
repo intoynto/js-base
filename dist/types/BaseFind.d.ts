@@ -14,6 +14,8 @@ export declare class BaseFind<P extends IBaseFindProps, S extends IBaseFindState
     protected onChUpdate(e: IAnyEvent): void;
     protected onChLimit(e: IAnyEvent): void;
     protected hKeyPress(e: React.KeyboardEvent<HTMLInputElement>): void;
+    protected onClickIns(e?: React.MouseEvent): void;
+    protected onClickLoad(e?: React.MouseEvent): void;
     protected rdrApFind(): any;
     render(): JSX.Element;
 }

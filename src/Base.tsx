@@ -33,6 +33,8 @@ export class Base<P extends IBaseProps, S extends IBaseState> extends React.Comp
     // apakah data harus dihapus ketika loaded tidak berhasil
     protected clrDataOnFailed:boolean=false;
 
+    protected _mod:boolean=false; // define if is modal
+
     // jenis request delete
     protected delReqTipe:IBaseDeleteRequestType=getDefaultDeleteRequestType();
 
@@ -341,9 +343,13 @@ export class Base<P extends IBaseProps, S extends IBaseState> extends React.Comp
 
     onInsert(){
         const callable=this.props.compForm;
-        if(!callable) return;
+        if(!callable || this._mod) return;
 
-        callable().then((newData:any) =>{
+        this._mod=true; // define is modal
+        callable({
+            onClose:()=>this._mod=false, // release defined modal
+        }).then((newData:any) =>{
+            this._mod=false; // release defined modal
             this.onAftInsert(newData);
         });
     }
@@ -356,10 +362,14 @@ export class Base<P extends IBaseProps, S extends IBaseState> extends React.Comp
 
     onUpdate(data:any){
         const callable=this.props.compForm;
-        if(!callable) return;
+        if(!callable || this._mod) return;
+
+        this._mod=true; // is modal defined
         callable({
-            data:data
+            data:data,
+            onClose:()=>this._mod=false, // release defined modal
         }).then((newData:any)=>{
+            this._mod=false; // release defined modal
             this.onAftUpdate(newData);
         });
     }

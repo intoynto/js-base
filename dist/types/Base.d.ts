@@ -11,6 +11,7 @@ export declare class Base<P extends IBaseProps, S extends IBaseState> extends Re
     protected asgFieldShow: number;
     protected updOnDidUpRecord: boolean;
     protected clrDataOnFailed: boolean;
+    protected _mod: boolean;
     protected delReqTipe: IBaseDeleteRequestType;
     constructor(props: P);
     protected gInitState(props?: P): S;

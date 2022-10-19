@@ -89,8 +89,14 @@ export class BaseFind<P extends IBaseFindProps, S extends IBaseFindState> extend
     {
         if(e) e.preventDefault();
         if(this.props.loading || !this.props.useInsert) return;
+
         if(typeof this.props.onInsert==='function')
         {
+            const target:any=e?e.target:undefined;
+            if(target!==undefined && typeof target.blur==='function')
+            {
+                target.blur();
+            }
             this.props.onInsert();
         }
     }

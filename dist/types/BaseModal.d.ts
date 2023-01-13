@@ -26,8 +26,8 @@ declare class BaseModal<P extends IBaseModalProps, S extends IBaseModalState> ex
     onClSubmit(e?: React.MouseEvent): void;
     rdrTitle(): any;
     rdrActions(): React.ReactNode | null | undefined;
-    rdrContent(): JSX.Element;
-    render(): React.ReactNode;
+    rdrContent(): any;
+    render(): any;
 }
 export { BaseModal };
 export declare function createModalPromise({ component, url_insert, url_update, formTitle, data, fieldid, ...any }: IModalPromiseParameters): Promise<unknown>;

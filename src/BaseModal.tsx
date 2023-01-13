@@ -223,7 +223,8 @@ class BaseModal<P extends IBaseModalProps, S extends IBaseModalState> extends Re
         )
     }
 
-    rdrContent(){
+    rdrContent():any
+    {
         const data=this.data||{} as any;
         return (
             <div className="windowContent">
@@ -232,7 +233,7 @@ class BaseModal<P extends IBaseModalProps, S extends IBaseModalState> extends Re
         )
     }    
 
-    render():React.ReactNode
+    render():any
     {     
         const {loading,progress}=this.state;
         const st1:CSSProperties={

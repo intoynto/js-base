@@ -26,6 +26,7 @@ export class BaseFind<P extends IBaseFindProps, S extends IBaseFindState> extend
         this.rdrApFind=this.rdrApFind.bind(this);
         this.onClickIns=this.onClickIns.bind(this);
         this.onClickLoad=this.onClickLoad.bind(this);
+        this.onClickSearch=this.onClickSearch.bind(this);
 
         this.btnInsertIcon=()=><i className="fa fa-plus-circle" />
         this.btnInsertClass="btn btn-outline-primary";
@@ -111,12 +112,19 @@ export class BaseFind<P extends IBaseFindProps, S extends IBaseFindState> extend
         }
     }
 
+    protected onClickSearch(e?:React.MouseEvent)
+    {
+        if(e) e.preventDefault();
+        if(this.props.loading) return;
+        this.callPropsSearch();
+    }
+
     protected rdrApFind():any
     {
         const props=this.props;
         const {loading}=props;
         const childs=[
-            <button type="button" className="btn" onClick={this.onClickLoad}><i className={"fa " + (this.props.loading ? "fa-spin fa-spinner" :this.textReloadIcon)} />{this.textReload?" "+this.textReload:""}</button>           
+            <button type="button" className="btn" onClick={this.onClickSearch}><i className={"fa " + (this.props.loading ? "fa-spin fa-spinner" :this.textReloadIcon)} />{this.textReload?" "+this.textReload:""}</button>           
         ];
         if(props.useInsert)
         {

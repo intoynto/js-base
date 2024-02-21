@@ -1,0 +1,33 @@
+import React, { CSSProperties, RefObject, ChangeEvent } from "react";
+import { Iajax, IUploadProgress } from "intoy-xhr";
+import { IBaseModalState, IBaseModalProps, IModalPromiseParameters } from "./types";
+type IAnyEvent = ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>;
+declare class BaseModal<P extends IBaseModalProps, S extends IBaseModalState> extends React.Component<P, S> {
+    protected prevData: any;
+    protected data: any;
+    protected classForm: string;
+    protected styleForm: CSSProperties;
+    protected btnSaveText: string;
+    protected btnCancelText: string;
+    protected useEfieldId: boolean;
+    protected titleIns: string;
+    protected titleUpd: string;
+    constructor(props: P);
+    protected gInitState(): S;
+    protected nodeForm: RefObject<HTMLFormElement> | any;
+    protected getIncludeFields(): string[];
+    protected getCkBoxVal(value: any, checked: boolean): any;
+    getEditing(): boolean;
+    getSetup(): Iajax;
+    protected hUploadProgress(prog: IUploadProgress): void;
+    protected onSuccess(data: any): void;
+    onSubmit(e?: React.FormEvent<HTMLFormElement>): void;
+    onCh(e: IAnyEvent): void;
+    onClSubmit(e?: React.MouseEvent): void;
+    rdrTitle(): any;
+    rdrActions(): React.ReactNode | null | undefined;
+    rdrContent(): any;
+    render(): any;
+}
+export { BaseModal };
+export declare function createModalPromise({ component, url_insert, url_update, formTitle, data, fieldid, ...any }: IModalPromiseParameters): Promise<unknown>;

@@ -56,6 +56,7 @@ export class Base<P extends IBaseProps, S extends IBaseState> extends React.Comp
         this.onAftDelete=this.onAftDelete.bind(this);
 
         this.doSndDelete=this.doSndDelete.bind(this);
+        this.hasChangePage=this.hasChangePage.bind(this);
         this.onSetPage=this.onSetPage.bind(this);
 
         this.didUpRecord=this.didUpRecord.bind(this);
@@ -587,21 +588,31 @@ export class Base<P extends IBaseProps, S extends IBaseState> extends React.Comp
         });
     }
 
-    onSetPage(page:number)
+    /**
+     * Check if page has change
+     * @param number page 
+     * @returns bool
+     */
+    protected hasChangePage(page:number):boolean
     {
-        if(this.state.loading) return false;
         page=toInt(page);
         page=page<1?1:page;
         page=page>this.res.pagecount?this.res.pagecount:page;
-        
-        if(page!==this.res.page)
+        return page!==this.res.page;
+    }
+
+    onSetPage(page:number)
+    {
+        if(this.state.loading) return;
+        if(this.hasChangePage(page))
         {
             this.req.page=page;
             this.onReload();
         }
     }
 
-    onSetLimit=(limit:number)=>{
+    onSetLimit=(limit:number)=>
+    {
         if(limit===undefined || limit===null || limit===this.req.limit) return;
         this.req.limit=limit;
         this.onReload();

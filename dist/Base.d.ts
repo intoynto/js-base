@@ -39,7 +39,13 @@ export declare class Base<P extends IBaseProps, S extends IBaseState> extends Re
     protected getSetupDel(data: any): Iajax;
     protected doSndDelete(se: Iajax): void;
     onDelete(data: any): void;
-    onSetPage(page: number): false | undefined;
+    /**
+     * Check if page has change
+     * @param number page
+     * @returns bool
+     */
+    protected hasChangePage(page: number): boolean;
+    onSetPage(page: number): void;
     onSetLimit: (limit: number) => void;
     getFndProps(): any;
     getTblProps(): {

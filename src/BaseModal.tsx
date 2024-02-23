@@ -48,7 +48,7 @@ class BaseModal<P extends IBaseModalProps, S extends IBaseModalState> extends Re
 
     protected getCkBoxVal(value:any,checked:boolean)
     {
-        return checked && (Array.isArray(value) && value.length>0 || toStr(value).toString().trim().length)>0?value:null;
+        return checked && (Array.isArray(value) && value.length>0 || toStr(value).toString().trim().length>0)?value:null;
         
     }
 

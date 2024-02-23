@@ -3,6 +3,7 @@ import {
     IBaseFindProps
     ,IBaseFindState  
 } from "./types";
+import { isEqual } from "intoy-utils";
 
 type IAnyEvent=React.ChangeEvent<HTMLInputElement>|React.ChangeEvent<HTMLTextAreaElement>;
 
@@ -106,6 +107,14 @@ export class BaseFind<P extends IBaseFindProps, S extends IBaseFindState> extend
     {
         if(e) e.preventDefault();
         if(this.props.loading) return;
+
+        if(!isEqual(this.state.search,this.props.search))
+        {
+            // call props on search only
+            this.callPropsSearch();
+            return;
+        }
+
         if(typeof this.props.onReload==='function')
         {
             this.props.onReload();
@@ -124,7 +133,7 @@ export class BaseFind<P extends IBaseFindProps, S extends IBaseFindState> extend
         const props=this.props;
         const {loading}=props;
         const childs=[
-            <button type="button" className="btn" onClick={this.onClickSearch}><i className={"fa " + (this.props.loading ? "fa-spin fa-spinner" :this.textReloadIcon)} />{this.textReload?" "+this.textReload:""}</button>           
+            <button type="button" className="btn" onClick={this.onClickLoad}><i className={"fa " + (this.props.loading ? "fa-spin fa-spinner" :this.textReloadIcon)} />{this.textReload?" "+this.textReload:""}</button>           
         ];
         if(props.useInsert)
         {

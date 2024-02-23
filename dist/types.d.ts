@@ -1,5 +1,5 @@
 import { CSSProperties } from "react";
-export type IBaseField = {
+export declare type IBaseField = {
     f: string;
     alias: string;
     cb?: Function;
@@ -7,13 +7,13 @@ export type IBaseField = {
     className?: string;
     style?: CSSProperties;
 };
-export type IBaseDeleteRequestType = "default" | "qparams";
-export type IBaseRequest = {
+export declare type IBaseDeleteRequestType = "default" | "qparams";
+export declare type IBaseRequest = {
     search: any;
     page: number;
     limit: number;
 };
-export type IBaseResponse = {
+export declare type IBaseResponse = {
     limit: number;
     page: number;
     pagecount: number;
@@ -21,24 +21,24 @@ export type IBaseResponse = {
     totalrow: number;
     records: any[];
 };
-export type IBaseSetupTable = {
+export declare type IBaseSetupTable = {
     dataName?: string;
     fieldid: string | string[];
     fields?: IBaseField[];
     sortField?: string;
     sortFieldType?: "string" | "integer" | "double";
 };
-export type IBaseSearch = {
+export declare type IBaseSearch = {
     search: string;
     [p: string]: any;
 };
-export type IBaseState = {
+export declare type IBaseState = {
     loadedCount: number;
     loading: boolean;
     error: any;
     [p: string]: any;
 };
-export type IBaseFindProps = {
+export declare type IBaseFindProps = {
     search?: IBaseSearch;
     loading?: Boolean;
     limit?: number;
@@ -47,11 +47,11 @@ export type IBaseFindProps = {
     onReload?: () => void;
     [p: string]: any;
 };
-export type IBaseFindState = {
+export declare type IBaseFindState = {
     search: IBaseSearch;
     [p: string]: any;
 };
-export type IBaseTableItemProps = {
+export declare type IBaseTableItemProps = {
     num?: number;
     loading?: boolean;
     useUpdate?: boolean;
@@ -60,7 +60,7 @@ export type IBaseTableItemProps = {
     onUpdate?: (data: any) => void;
     onDelete?: (data: any) => void;
 };
-export type IBaseTableProps = {
+export declare type IBaseTableProps = {
     loading?: boolean;
     records: any[];
     page: number;
@@ -72,7 +72,7 @@ export type IBaseTableProps = {
     onDelete?: (data: any) => void;
     [p: string]: any;
 };
-export type IBasePagOptions = {
+export declare type IBasePagOptions = {
     page: string | number;
     pagecount: string | number;
     limit: string | number;
@@ -80,24 +80,24 @@ export type IBasePagOptions = {
     totalrow: string | number;
     [p: string]: any;
 };
-export type IBasePagProps = IBasePagOptions & {
+export declare type IBasePagProps = IBasePagOptions & {
     dsLeft?: boolean;
     dsRight?: boolean;
     onSetPage: (page: number) => void;
 };
-export type IBasePageInfoParams = {
+export declare type IBasePageInfoParams = {
     page: number;
     pagecount: number;
     range: number;
 };
-export type IBasePageInfo = {
+export declare type IBasePageInfo = {
     page: number;
     pagecount: number;
     range: number;
     pagemin: number;
     pagemax: number;
 };
-export type IBaseModalProps = {
+export declare type IBaseModalProps = {
     fieldid: string;
     data?: any;
     url_insert?: string;
@@ -107,16 +107,16 @@ export type IBaseModalProps = {
     onUpdate?: (newData: any) => void;
     [p: string]: any;
 };
-type IUploadProgress = {
+declare type IUploadProgress = {
     loaded: number;
     total: number;
     percentage: number;
 };
-export type IBaseModalState = {
+export declare type IBaseModalState = {
     loading: boolean;
     progress: IUploadProgress | null;
 };
-export type IBaseFormProps = {
+export declare type IBaseFormProps = {
     fieldid: string;
     data?: any;
     url_insert?: string;
@@ -125,19 +125,19 @@ export type IBaseFormProps = {
     onClose?: () => void;
     onUpdate?: (n: any) => void;
 };
-export type IBaseFormState = {
+export declare type IBaseFormState = {
     loading: boolean;
 };
-export type IModalPromiseParameters = IBaseModalProps & {
+export declare type IModalPromiseParameters = IBaseModalProps & {
     component?: any;
 };
-export type IBaseOptionSearchArrayObject = {
+export declare type IBaseOptionSearchArrayObject = {
     arrayObj: any[];
     field: string;
     value: string | number;
     sensitive?: boolean;
 };
-export type IBaseProps = {
+export declare type IBaseProps = {
     className?: string;
     url_data?: string;
     url_delete?: string;
@@ -154,7 +154,7 @@ export type IBaseProps = {
     compForm?: any;
     [p: string]: any;
 };
-export type IChosenListProps = {
+export declare type IChosenListProps = {
     url: string;
     params?: any;
     method?: string;
@@ -170,7 +170,7 @@ export type IChosenListProps = {
     onFieldName?: (data: any) => void;
     onChange: (e: any) => void;
 };
-export type IChosenListState = {
+export declare type IChosenListState = {
     loading: boolean;
 };
 export declare function handleResponseSelf(this: any, response: any): void;

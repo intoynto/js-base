@@ -1,6 +1,6 @@
 import React from "react";
 import { IBaseFindProps, IBaseFindState } from "./types";
-type IAnyEvent = React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>;
+declare type IAnyEvent = React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>;
 export declare class BaseFind<P extends IBaseFindProps, S extends IBaseFindState> extends React.Component<P, S> {
     protected textInsert: string;
     protected textReload: string;

@@ -1,5 +1,5 @@
 import React from "react";
-export type ISelectListProps = {
+export declare type ISelectListProps = {
     url: string;
     params?: any;
     method?: string;
@@ -16,7 +16,7 @@ export type ISelectListProps = {
     onFieldName?: (data: any) => void;
     onChange: (e: any) => void;
 };
-export type ISelectListState = {
+export declare type ISelectListState = {
     loading: boolean;
 };
 export declare class SelectList<P extends ISelectListProps, S extends ISelectListState> extends React.Component<P, S> {

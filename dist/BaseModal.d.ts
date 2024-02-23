@@ -1,7 +1,7 @@
 import React, { CSSProperties, RefObject, ChangeEvent } from "react";
 import { Iajax, IUploadProgress } from "intoy-xhr";
 import { IBaseModalState, IBaseModalProps, IModalPromiseParameters } from "./types";
-type IAnyEvent = ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>;
+declare type IAnyEvent = ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>;
 declare class BaseModal<P extends IBaseModalProps, S extends IBaseModalState> extends React.Component<P, S> {
     protected prevData: any;
     protected data: any;

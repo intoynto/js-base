@@ -1,6 +1,6 @@
 import { IajaxException } from "intoy-xhr";
 import { IBaseDeleteRequestType } from "./types";
-type IbaseResAttr = {
+declare type IbaseResAttr = {
     records: string;
     page: string;
     pagecount: string;
@@ -20,7 +20,7 @@ export declare function setConfigHeader(newHeader: any): void;
 export declare function getConfigHeader(): {
     Authorization: string;
 } | undefined;
-type IappendHBase = {
+declare type IappendHBase = {
     msg_before?: string;
     msg_after?: string;
 };

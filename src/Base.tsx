@@ -308,7 +308,9 @@ export class Base<P extends IBaseProps, S extends IBaseState> extends React.Comp
             this.handFilter();
             this.handRespAft();            
         })
-        .catch(e=>{
+        .catch(e=>
+        {
+            console.error(`An error occurred while sending the request. `,setup.url);
             if(this.clrDataOnFailed)
             {
                 this.handResp(null);

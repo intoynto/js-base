@@ -7,4 +7,3 @@ export * from "./Item";
 export * from "./Loader";
 export * from "./baseConfig";
 export * from "./types";
-export * from "./SelectList";

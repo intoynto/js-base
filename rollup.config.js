@@ -23,7 +23,7 @@ export default [
                     "intoy-modal":"intoy-modal",
                     "intoy-utils":"intoy-utils",
                     "intoy-xhr":"intoy-xhr",
-                    "intoy-select":"intoy-select",
+                    //"intoy-select":"intoy-select",
                 },
             },            
         ],
